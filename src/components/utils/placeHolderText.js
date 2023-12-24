@@ -1,0 +1,1 @@
+export const DummyText = () => "A CSS Playground for size-adjust and Font mods"
