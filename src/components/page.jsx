@@ -21,11 +21,11 @@ function Page() {
     
       return res.json();
     };
-    getGoogleFonts()
+    // setGoogleFonts(getGoogleFonts())
   }, [googleFonts])
 
   const standardFonts = getStandardFonts();
-  const googleFontResponse = googleFonts;
+
   return (
     <main className="min-h-screen p-6 md:p-12 flex flex-column justify-center">
       <div className="z-10 w-full max-w-none md:max-w-5xl text-center">
@@ -36,7 +36,7 @@ function Page() {
           tweak it in order to get the best possible results.
         </p>
         <Interface
-          googleFonts={googleFontResponse.items}
+          googleFonts={googleFonts.items}
           standardFonts={standardFonts}
         />
         <div className="mt-8 text-sm text-slate-600 text-left md:text-center leading-6">
