@@ -1,4 +1,4 @@
-export const standardFonts = () => [
+export const getStandardFonts = () => [
   {
     id: 'arial',
     fullName: 'Arial',
