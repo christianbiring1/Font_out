@@ -1,28 +1,31 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Interface from './Interface';
 import { getStandardFonts } from './utils/standardFonts';
 
 
-// const getGoogleFonts = async () => {
-
-//   const API_KEY = "AIzaSyD2p_71tmw-dMxRvNn6DyFILkXy2tVLb0k";
-//   const res = await fetch(
-//     `https://www.googleapis.com/webfonts/v1/webfonts?key=${API_KEY}`
-//   );
-
-//   if (!res.ok) {
-//     throw new Error("Failed to fetch Fonts from Google")
-//     console.log('need to fatch')
-//   }
-
-//   return res.json();
-// };
-
-
 function Page() {
 
+  const [googleFonts, setGoogleFonts] = useState([]);
+
+  useEffect(() => {
+    const getGoogleFonts = async () => {
+
+      const API_KEY = "AIzaSyD2p_71tmw-dMxRvNn6DyFILkXy2tVLb0k";
+      const res = await fetch(
+        `https://www.googleapis.com/webfonts/v1/webfonts?key=${API_KEY}`
+      );
+
+      if (!res.ok) {
+      throw new Error("Failed to fetch Fonts from Google")
+      }
+    
+      return res.json();
+    };
+    getGoogleFonts()
+  }, [googleFonts])
+
   const standardFonts = getStandardFonts();
-  // const googleFontResponse = await getGoogleFonts();
+  const googleFontResponse = googleFonts;
   return (
     <main className="min-h-screen p-6 md:p-12 flex flex-column justify-center">
       <div className="z-10 w-full max-w-none md:max-w-5xl text-center">
@@ -33,15 +36,15 @@ function Page() {
           tweak it in order to get the best possible results.
         </p>
         <Interface
-          // googleFonts={googleFontResponse.items}
-          // standardFonts={standardFonts}
+          googleFonts={googleFontResponse.items}
+          standardFonts={standardFonts}
         />
         <div className="mt-8 text-sm text-slate-600 text-left md:text-center leading-6">
           Made by&nbsp;
           <a
             className="border-b-2 border-slate-600 border-dotted"
             target="_blank"
-            href="https://antoniocosentino.com" rel="noreferrer"
+            href="https://github.com/christianbiring1/" rel="noreferrer"
           >
             Christian Biringanine
           </a>{" "}
@@ -52,7 +55,7 @@ function Page() {
           <span className="hidden md:inline-block">&nbsp;</span>
           <a
             target="_blank"
-            href="https://github.com/antoniocosentino/what-the-fout" rel="noreferrer"
+            href="https://github.com/christianbiring1/" rel="noreferrer"
           >
             <img
               alt="Github"
