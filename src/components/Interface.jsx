@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useOutsideClick } from "./hooks/useOutsideClick";
 import { DummyText } from './utils/placeHolderText';
 import { FONT_WEIGHTS } from './utils/fontWeights';
 
@@ -107,16 +108,16 @@ const Interface = (props) => {
     }
   };
 
-  // const sampleTextRef = useOutsideClick(handleClickOutsideTextarea);
+  const sampleTextRef = useOutsideClick(handleClickOutsideTextarea);
 
   // putting the cursor in the textarea when clicking
-  // useEffect(() => {
-  //   if (isInEditMode) {
-  //     sampleTextRef.current?.focus();
-  //   }
-  // }, [isInEditMode, sampleTextRef]);
+  useEffect(() => {
+    if (isInEditMode) {
+      sampleTextRef.current?.focus();
+    }
+  }, [isInEditMode, sampleTextRef]);
 
-  // const fontsSelectRef = useOutsideClick(handleClickOutsideDropdown);
+  const fontsSelectRef = useOutsideClick(handleClickOutsideDropdown);
 
   const overridesArr = [];
 
@@ -154,7 +155,7 @@ const Interface = (props) => {
               <input
                 className={INPUT_CLASSES}
                 type="text"
-                // ref={fontsSelectRef}
+                ref={fontsSelectRef}
                 id="google-fonts-input"
                 list="google-fonts"
                 defaultValue={DEFAULT_GOOGLE_FONT}
@@ -454,7 +455,7 @@ const Interface = (props) => {
               }}
             >
               <textarea
-                // ref={sampleTextRef}
+                ref={sampleTextRef}
                 style={{
                   fontFamily: `${fontName}`,
                   fontSize: `${fontSize}px`,
