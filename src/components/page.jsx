@@ -10,7 +10,7 @@ function Page() {
   useEffect(() => {
     const getGoogleFonts = async () => {
 
-      const API_KEY = "AIzaSyD2p_71tmw-dMxRvNn6DyFILkXy2tVLb0k";
+      const API_KEY = import.meta.env.VITE_API_KEY;
       const res = await fetch(
         `https://www.googleapis.com/webfonts/v1/webfonts?key=${API_KEY}`
       );
@@ -18,13 +18,16 @@ function Page() {
       if (!res.ok) {
       throw new Error("Failed to fetch Fonts from Google")
       }
-    
-      return res.json();
+
+      setGoogleFonts(await res.json())
+      // return res.json();
     };
-    // setGoogleFonts(getGoogleFonts())
+    getGoogleFonts()
   }, [googleFonts])
 
+
   const standardFonts = getStandardFonts();
+  console.log(googleFonts);
 
   return (
     <main className="min-h-screen p-6 md:p-12 flex flex-column justify-center">
