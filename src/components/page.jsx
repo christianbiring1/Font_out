@@ -10,7 +10,7 @@ function Page() {
   useEffect(() => {
     const getGoogleFonts = async () => {
 
-      const API_KEY = import.meta.env.VITE_API_KEY;
+      const API_KEY = import.meta.env.VITE_API_KEY || process.env.VITE_API_KEY;
       const res = await fetch(
         `https://www.googleapis.com/webfonts/v1/webfonts?key=${API_KEY}`
       );
