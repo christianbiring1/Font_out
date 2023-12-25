@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useOutsideClick } from "./hooks/useOutsideClick";
 import { DummyText } from './utils/placeHolderText';
 import { FONT_WEIGHTS } from './utils/fontWeights';
+import { Helmet } from "react-helmet";
 
 
 const DEFAULT_GOOGLE_FONT = "Lato";
@@ -141,6 +142,21 @@ const Interface = (props) => {
 
   return (
     <>
+    <Helmet>
+      <link
+        rel="stylesheet"
+        href={`https://fonts.googleapis.com/css2?family=${fontName}:wght@${fontWeight}`}
+      />
+    </Helmet>
+    <Helmet
+      style={[
+        {
+          cssText: `@font-face {
+            ${overridesString}
+          }`
+        }
+      ]}
+    />
     <div className="md:flex flex-row justify-between gap-4 sm:block">
         <div className="bg-slate-50 basis-1/2 p-6 rounded shadow-lg">
           <h2 className="font-medium text-2xl mb-5">Web Font</h2>
