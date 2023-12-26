@@ -19,10 +19,16 @@ function Page() {
       throw new Error("Failed to fetch Fonts from Google")
       }
 
-      setGoogleFonts(await res.json())
-      // return res.json();
+      const data = await res.json();
+
+      setGoogleFonts(data || [])
     };
-    getGoogleFonts()
+
+
+    if (googleFonts.length === 0) {
+      getGoogleFonts()
+    }
+  
   }, [googleFonts])
 
 
