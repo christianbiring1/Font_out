@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
 import { useOutsideClick } from "./hooks/useOutsideClick";
 import { DummyText } from './utils/placeHolderText';
 import { FONT_WEIGHTS } from './utils/fontWeights';
-import { Helmet } from "react-helmet";
+import { getComputedOpacity } from "./utils/getComputedOpacity";
 
 
 const DEFAULT_GOOGLE_FONT = "Lato";
@@ -437,9 +438,9 @@ const Interface = (props) => {
                   fontWeight: fontWeight,
                   letterSpacing: `${letterSpacing}px`,
                   wordSpacing: `${wordSpacing}px`,
-                  // opacity: `${
-                  //   getComputedOpacity(overlapBalance).fallbackFontOpacity
-                  // }%`,
+                  opacity: `${
+                    getComputedOpacity(overlapBalance).fallbackFontOpacity
+                  }%`,
                 }}
               >
                 {sampleText}
@@ -454,9 +455,9 @@ const Interface = (props) => {
                   fontWeight: fontWeight,
                   letterSpacing: `${letterSpacing}px`,
                   wordSpacing: `${wordSpacing}px`,
-                  // opacity: `${
-                  //   getComputedOpacity(overlapBalance).finalFontOpacity
-                  // }%`,
+                  opacity: `${
+                    getComputedOpacity(overlapBalance).finalFontOpacity
+                  }%`,
                 }}
               >
                 {sampleText}
