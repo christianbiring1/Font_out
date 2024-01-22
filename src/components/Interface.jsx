@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Helmet } from "react-helmet";
 import PropTypes from "prop-types";
 
 import { useOutsideClick } from "./hooks/useOutsideClick";
+import { useOnClickOutside } from "./hooks/useOnClickOutside";
 import { DummyText } from './utils/placeHolderText';
 import { FONT_WEIGHTS } from './utils/fontWeights';
 import { getComputedOpacity } from "./utils/getComputedOpacity";
@@ -30,6 +31,10 @@ const Interface = (props) => {
   const { googleFonts, standardFonts } = props;
 
   const [sampleText, setSampleText] = useState(DummyText());
+  // const [isOpen, setIsOpen] = useState(false);
+
+  const textRef = useRef();
+  // useOnClickOutside(textRef, isOpen, () => setIsOpen(false));
 
   // UI settings
   const [fontName, setFontName] = useState(DEFAULT_GOOGLE_FONT);
@@ -79,6 +84,8 @@ const Interface = (props) => {
     setIsInEditMode(false);
   };
 
+  useOnClickOutside(textRef, isInEditMode, handleClickOutsideTextarea)
+
   const handleClickOutsideDropdown = () => {
     const element = document.querySelector("#google-fonts-input");
     const value = element?.value;
@@ -112,14 +119,15 @@ const Interface = (props) => {
     }
   };
 
-  const sampleTextRef = useOutsideClick(handleClickOutsideTextarea);
+  // const sampleTextRef = useOutsideClick(handleClickOutsideTextarea);
 
   // putting the cursor in the textarea when clicking
   useEffect(() => {
     if (isInEditMode) {
-      sampleTextRef.current?.focus();
+      // sampleTextRef.current?.focus();
+      textRef.current?.focus()
     }
-  }, [isInEditMode, sampleTextRef]);
+  }, [isInEditMode, textRef]);
 
   const fontsSelectRef = useOutsideClick(handleClickOutsideDropdown);
 
@@ -444,6 +452,7 @@ const Interface = (props) => {
                     getComputedOpacity(overlapBalance).fallbackFontOpacity
                   }%`,
                 }}
+                // ref={textRef}
               >
                 {sampleText}
               </div>
@@ -474,7 +483,8 @@ const Interface = (props) => {
               }}
             >
               <textarea
-                ref={sampleTextRef}
+                // ref={sampleTextRef}
+                ref={textRef}
                 style={{
                   fontFamily: `${fontName}`,
                   fontSize: `${fontSize}px`,
@@ -550,8 +560,8 @@ const Interface = (props) => {
 }
 
 Interface.propTypes = {
-  googleFonts: PropTypes.object,
-  standardFonts: PropTypes.object,
+  googleFonts: PropTypes.array,
+  standardFonts: PropTypes.array,
 }
  
 export default Interface;
