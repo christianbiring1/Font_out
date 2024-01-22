@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
+import PropTypes from "prop-types";
+
 import { useOutsideClick } from "./hooks/useOutsideClick";
 import { DummyText } from './utils/placeHolderText';
 import { FONT_WEIGHTS } from './utils/fontWeights';
@@ -545,6 +547,11 @@ const Interface = (props) => {
       
     </>
   );
+}
+
+Interface.propTypes = {
+  googleFonts: PropTypes.object,
+  standardFonts: PropTypes.object,
 }
  
 export default Interface;

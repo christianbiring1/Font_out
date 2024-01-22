@@ -33,7 +33,6 @@ function Page() {
 
 
   const standardFonts = getStandardFonts();
-  console.log(googleFonts);
 
   return (
     <main className="min-h-screen p-6 md:p-12 flex flex-column justify-center">
