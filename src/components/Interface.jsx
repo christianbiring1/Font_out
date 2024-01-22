@@ -401,7 +401,7 @@ const Interface = (props) => {
                 type="checkbox"
                 className="h-6 w-6"
                 defaultChecked={useDifferentColor}
-                onChange={(e) => setUseDifferentColor(!useDifferentColor)}
+                onChange={() => setUseDifferentColor(!useDifferentColor)}
               />
             </div>
           </div>

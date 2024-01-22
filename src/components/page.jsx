@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react'; //eslint-disable-line
+
 import Interface from './Interface';
 import { getStandardFonts } from './utils/standardFonts';
 
@@ -10,7 +11,7 @@ function Page() {
   useEffect(() => {
     const getGoogleFonts = async () => {
 
-      const API_KEY = import.meta.env.VITE_API_KEY || process.env.VITE_API_KEY;
+      const API_KEY = import.meta.env.VITE_API_KEY || process.env.VITE_API_KEY; //eslint-disable-line
       const res = await fetch(
         `https://www.googleapis.com/webfonts/v1/webfonts?key=${API_KEY}`
       );
